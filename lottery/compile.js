@@ -22,6 +22,7 @@ const input = {
     }
 };
 
+
 const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
 const abiInterface = output.contracts[`${contractName}.sol`][contractName].abi;
