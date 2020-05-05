@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
+import {web3} from './web3';
 
 function App() {
+  
   return (
     <div className="App">
       
