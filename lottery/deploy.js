@@ -18,8 +18,6 @@ const web3 = new Web3(provider);
         .deploy({data: `0x${bytecode}`})
         .send({from: accounts[0], gas: '1000000'});
 
-    console.log("ABI interface");
-    console.log((JSON.stringify(abiInterface)));
     console.log('Contract deployed to ', result.options.address);
 
     provider.engine.stop();
