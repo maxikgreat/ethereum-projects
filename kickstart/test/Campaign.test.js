@@ -33,9 +33,21 @@ beforeEach(async () => {
 
 describe('Campaigns', () => {
     it('deploys a factory and a campaign', () => {
-        console.log(factory.options.address);
-        console.log(campaign.options.address);
         assert.ok(factory.options.address);
         assert.ok(campaign.options.address);
-    })
+    });
+
+    it('marks caller as the campaign manager', async () => {
+        const manager = await campaign.methods.manager().call();
+        assert.equal(manager, accounts[0]);
+    });
+
+    it('allows people to contribute money and marks them as approvers', async () => {
+        await campaign.methods.contribute().send({
+            from: accounts[1],
+            value: '200'
+        });
+        const isContributor = await campaign.methods.approvers(accounts[1]).call();
+        assert(isContributor);
+    });
 });
