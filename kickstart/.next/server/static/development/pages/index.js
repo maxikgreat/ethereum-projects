@@ -108,23 +108,18 @@ module.exports = JSON.parse("{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\
 /*!*****************************!*\
   !*** ./ethereum/factory.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: factory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "factory", function() { return factory; });
+/* harmony import */ var _web3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./web3 */ "./ethereum/web3.js");
+/* harmony import */ var _build_CampaignFactory_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./build/CampaignFactory.json */ "./ethereum/build/CampaignFactory.json");
+var _build_CampaignFactory_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./build/CampaignFactory.json */ "./ethereum/build/CampaignFactory.json", 1);
 
 
-var _web = _interopRequireDefault(__webpack_require__(/*! ./web3 */ "./ethereum/web3.js"));
-
-var _CampaignFactory = _interopRequireDefault(__webpack_require__(/*! ./build/CampaignFactory.json */ "./ethereum/build/CampaignFactory.json"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-let factory;
-
-if (false) {}
-
-module.exports = factory;
+const factory = new _web3__WEBPACK_IMPORTED_MODULE_0__["default"].eth.Contract(_build_CampaignFactory_json__WEBPACK_IMPORTED_MODULE_1__.abi, '0x45cE9Ae7d685F0A677D543d19aFd807843e3B4a8');
 
 /***/ }),
 
@@ -132,21 +127,23 @@ module.exports = factory;
 /*!**************************!*\
   !*** ./ethereum/web3.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-var _web = _interopRequireDefault(__webpack_require__(/*! web3 */ "web3"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var web3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! web3 */ "web3");
+/* harmony import */ var web3__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(web3__WEBPACK_IMPORTED_MODULE_0__);
 
 let web3;
 
-if (false) {}
+if (false) {} else {
+  //we are on the server OR user haven't metamask or etc.
+  const provider = new web3__WEBPACK_IMPORTED_MODULE_0___default.a.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/00a344b1cf9a4263ba07de9cfb952566');
+  web3 = new web3__WEBPACK_IMPORTED_MODULE_0___default.a(provider);
+}
 
-module.exports = web3;
+/* harmony default export */ __webpack_exports__["default"] = (web3);
 
 /***/ }),
 
@@ -163,14 +160,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ethereum_factory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ethereum/factory */ "./ethereum/factory.js");
-/* harmony import */ var _ethereum_factory__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ethereum_factory__WEBPACK_IMPORTED_MODULE_1__);
 var _jsxFileName = "/Users/macbook/ethereum/kickstart/pages/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 class CampaignIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   async componentDidMount() {
-    const campaigns = await _ethereum_factory__WEBPACK_IMPORTED_MODULE_1___default.a.methods.getDeployedCampaigns().call();
+    const campaigns = await _ethereum_factory__WEBPACK_IMPORTED_MODULE_1__["factory"].methods.getDeployedCampaigns().call();
     console.log(campaigns);
   }
 

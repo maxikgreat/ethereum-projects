@@ -15,25 +15,18 @@ module.exports = JSON.parse("{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\
 /*!*****************************!*\
   !*** ./ethereum/factory.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: factory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "factory", function() { return factory; });
+/* harmony import */ var _web3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./web3 */ "./ethereum/web3.js");
+/* harmony import */ var _build_CampaignFactory_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./build/CampaignFactory.json */ "./ethereum/build/CampaignFactory.json");
+var _build_CampaignFactory_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./build/CampaignFactory.json */ "./ethereum/build/CampaignFactory.json", 1);
 
 
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-var _web = _interopRequireDefault(__webpack_require__(/*! ./web3 */ "./ethereum/web3.js"));
-
-var _CampaignFactory = _interopRequireDefault(__webpack_require__(/*! ./build/CampaignFactory.json */ "./ethereum/build/CampaignFactory.json"));
-
-var factory;
-
-if (true) {
-  factory = new _web["default"].eth.Contract(_CampaignFactory["default"].abi, '0x45cE9Ae7d685F0A677D543d19aFd807843e3B4a8');
-}
-
-module.exports = factory;
+var factory = new _web3__WEBPACK_IMPORTED_MODULE_0__["default"].eth.Contract(_build_CampaignFactory_json__WEBPACK_IMPORTED_MODULE_1__.abi, '0x45cE9Ae7d685F0A677D543d19aFd807843e3B4a8');
 
 /***/ }),
 
@@ -41,24 +34,27 @@ module.exports = factory;
 /*!**************************!*\
   !*** ./ethereum/web3.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-var _web = _interopRequireDefault(__webpack_require__(/*! web3 */ "./node_modules/web3/src/index.js"));
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var web3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! web3 */ "./node_modules/web3/src/index.js");
+/* harmony import */ var web3__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(web3__WEBPACK_IMPORTED_MODULE_0__);
 
 var web3;
 
-if (true) {
-  web3 = new _web["default"](window.ethereum);
+if ( true && typeof window.ethereum !== 'undefined') {
+  // we are in browser and user have metamask
+  web3 = new web3__WEBPACK_IMPORTED_MODULE_0___default.a(window.ethereum);
   window.web3 = web3;
+} else {
+  //we are on the server OR user haven't metamask or etc.
+  var provider = new web3__WEBPACK_IMPORTED_MODULE_0___default.a.providers.WebsocketProvider('wss://rinkeby.infura.io/ws/v3/00a344b1cf9a4263ba07de9cfb952566');
+  web3 = new web3__WEBPACK_IMPORTED_MODULE_0___default.a(provider);
 }
 
-module.exports = web3;
+/* harmony default export */ __webpack_exports__["default"] = (web3);
 
 /***/ }),
 
@@ -246,23 +242,6 @@ function _typeof(obj) {
 
   return _typeof(obj);
 }
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
-
-module.exports = _interopRequireDefault;
 
 /***/ }),
 
@@ -3083,7 +3062,7 @@ module.exports = {
 
   var Buffer;
   try {
-    Buffer = __webpack_require__(/*! buffer */ 1).Buffer;
+    Buffer = __webpack_require__(/*! buffer */ 3).Buffer;
   } catch (e) {
   }
 
@@ -6525,7 +6504,7 @@ if (typeof self === 'object') {
 } else {
   // Node.js or Web worker with no crypto support
   try {
-    var crypto = __webpack_require__(/*! crypto */ 9);
+    var crypto = __webpack_require__(/*! crypto */ 10);
     if (typeof crypto.randomBytes !== 'function')
       throw new Error('Not supported');
 
@@ -8313,7 +8292,7 @@ module.exports = verify
 
   var Buffer;
   try {
-    Buffer = __webpack_require__(/*! buffer */ 10).Buffer;
+    Buffer = __webpack_require__(/*! buffer */ 11).Buffer;
   } catch (e) {
   }
 
@@ -44860,7 +44839,7 @@ function _isUint8Array(obj) {
 /*<replacement>*/
 
 
-var debugUtil = __webpack_require__(/*! util */ 5);
+var debugUtil = __webpack_require__(/*! util */ 6);
 
 var debug;
 
@@ -47094,7 +47073,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var _require = __webpack_require__(/*! buffer */ "./node_modules/node-libs-browser/node_modules/buffer/index.js"),
     Buffer = _require.Buffer;
 
-var _require2 = __webpack_require__(/*! util */ 6),
+var _require2 = __webpack_require__(/*! util */ 7),
     inspect = _require2.inspect;
 
 var custom = inspect && inspect.custom || 'inspect';
@@ -51400,7 +51379,7 @@ util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inh
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(/*! util */ 7);
+var debugUtil = __webpack_require__(/*! util */ 8);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -53289,7 +53268,7 @@ Writable.prototype._destroy = function (err, cb) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/safe-buffer/index.js").Buffer;
-var util = __webpack_require__(/*! util */ 8);
+var util = __webpack_require__(/*! util */ 9);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -54552,7 +54531,7 @@ util.inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inh
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(/*! util */ 3);
+var debugUtil = __webpack_require__(/*! util */ 4);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -56441,7 +56420,7 @@ Writable.prototype._destroy = function (err, cb) {
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Buffer = __webpack_require__(/*! safe-buffer */ "./node_modules/safe-buffer/index.js").Buffer;
-var util = __webpack_require__(/*! util */ 4);
+var util = __webpack_require__(/*! util */ 5);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -73991,7 +73970,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _ethereum_factory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ethereum/factory */ "./ethereum/factory.js");
-/* harmony import */ var _ethereum_factory__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_ethereum_factory__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
@@ -74028,7 +74006,7 @@ var CampaignIndex = /*#__PURE__*/function (_Component) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_ethereum_factory__WEBPACK_IMPORTED_MODULE_7___default.a.methods.getDeployedCampaigns().call());
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_ethereum_factory__WEBPACK_IMPORTED_MODULE_7__["factory"].methods.getDeployedCampaigns().call());
 
             case 2:
               campaigns = _context.sent;
@@ -74062,9 +74040,9 @@ var CampaignIndex = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 10:
 /*!************************!*\
-  !*** buffer (ignored) ***!
+  !*** crypto (ignored) ***!
   \************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -74073,7 +74051,7 @@ var CampaignIndex = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ 10:
+/***/ 11:
 /*!************************!*\
   !*** buffer (ignored) ***!
   \************************/
@@ -74097,9 +74075,9 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absol
 /***/ }),
 
 /***/ 3:
-/*!**********************!*\
-  !*** util (ignored) ***!
-  \**********************/
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -74163,9 +74141,9 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absol
 /***/ }),
 
 /***/ 9:
-/*!************************!*\
-  !*** crypto (ignored) ***!
-  \************************/
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
