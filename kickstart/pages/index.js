@@ -9,7 +9,6 @@ export async function getServerSideProps() {
 };
 
 export default class CampaignIndex extends Component {
-
     renderCampaigns() {
         return this.props.campaigns.map((campaign, index) => {
             return(
@@ -38,9 +37,6 @@ export default class CampaignIndex extends Component {
                             primary
                         />
                     </div>
-                    
-                    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
-
                     {this.renderCampaigns()}
                 </div>
             </Layout>
