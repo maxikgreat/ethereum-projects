@@ -19,6 +19,8 @@ const web3 = new Web3(provider);
         .send({from: accounts[0], gas: '1000000'});
     
     console.log('Contract deployed to ', result.options.address);
+    // 0x45cE9Ae7d685F0A677D543d19aFd807843e3B4a8
+    // factory address
 
     provider.engine.stop();
 })();

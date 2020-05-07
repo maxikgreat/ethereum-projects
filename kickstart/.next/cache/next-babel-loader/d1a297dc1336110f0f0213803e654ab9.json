@@ -1,0 +1,1 @@
+{"ast":null,"code":"// import Web3 from 'web3';\n// export const web3 = new Web3(window.ethereum);","map":{"version":3,"sources":["/Users/macbook/ethereum/kickstart/ethereum/web3.js"],"names":[],"mappings":"AACA;AAEA","sourcesContent":["\n// import Web3 from 'web3';\n\n// export const web3 = new Web3(window.ethereum);"]},"metadata":{},"sourceType":"script"}
