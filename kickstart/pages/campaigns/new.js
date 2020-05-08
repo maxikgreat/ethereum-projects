@@ -3,6 +3,7 @@ import {Form, Button, Input, Message} from 'semantic-ui-react';
 import {Layout} from '../../components/Layout';
 import {factory} from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
+import Router from 'next/router';
 
 export default class CampaignNew extends Component {
     state = {
@@ -13,7 +14,7 @@ export default class CampaignNew extends Component {
 
     onCreateCampaign = async (e) => {
         e.preventDefault();
-
+        
         this.setState({
             errorMessage: '',
             loading: true
@@ -25,6 +26,7 @@ export default class CampaignNew extends Component {
                 .send({
                     from: accounts[0]
                 })
+            Router.push('/');
         } catch(e) {
             this.setState({
                 errorMessage: e.message
