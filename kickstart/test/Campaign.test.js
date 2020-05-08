@@ -98,7 +98,7 @@ describe('Campaigns', () => {
             gas: '1000000'
         });
 
-        await campaign.methods.finalizyRequest(0).send({
+        await campaign.methods.finalizeRequest(0).send({
             from: accounts[0],
             gas: '1000000'
         });

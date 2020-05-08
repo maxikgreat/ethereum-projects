@@ -4,5 +4,5 @@ import CampaignFactory from './build/CampaignFactory.json';
 
 export const factory = new web3.eth.Contract(
     CampaignFactory.abi,
-    '0x45cE9Ae7d685F0A677D543d19aFd807843e3B4a8'
+    '0x6d6D5df19a0FeE82924630b0CbCeC23A8D960856'
 );

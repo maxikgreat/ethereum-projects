@@ -67,7 +67,7 @@ contract Campaign {
         request.approvalCount++;
     }
     
-    function finalizyRequest(uint index) public onlyOwner {
+    function finalizeRequest(uint index) public onlyOwner {
         Request storage request = requests[index];
         
         require(request.approvalCount > (approversCounts / 2));
@@ -76,5 +76,21 @@ contract Campaign {
         address payable vendor = address(uint160(request.recipient));
         vendor.transfer(request.value);
         request.complete = true;
+    }
+
+    function getSummary() public view returns (
+        uint, uint, uint, uint, address
+    ){
+        return (
+            minimumContribution,
+            address(this).balance,
+            requests.length,
+            approversCounts,
+            manager
+        );
+    }
+
+    function getRequestsCount() public view returns (uint) {
+        return requests.length;
     }
 }
