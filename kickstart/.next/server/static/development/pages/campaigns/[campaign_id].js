@@ -2144,10 +2144,10 @@ module.exports = __webpack_require__(/*! ./dist/client/link */ "./node_modules/n
 
 /***/ }),
 
-/***/ "./pages/campaigns/[campaign_id].js":
-/*!******************************************!*\
-  !*** ./pages/campaigns/[campaign_id].js ***!
-  \******************************************/
+/***/ "./pages/campaigns/[campaign_id]/index.js":
+/*!************************************************!*\
+  !*** ./pages/campaigns/[campaign_id]/index.js ***!
+  \************************************************/
 /*! exports provided: getServerSideProps, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2156,16 +2156,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ethereum_campaign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../ethereum/campaign */ "./ethereum/campaign.js");
-/* harmony import */ var _ethereum_web3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../ethereum/web3 */ "./ethereum/web3.js");
+/* harmony import */ var _ethereum_campaign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../ethereum/campaign */ "./ethereum/campaign.js");
+/* harmony import */ var _ethereum_web3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../ethereum/web3 */ "./ethereum/web3.js");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ "next/router");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _components_ContributeForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/ContributeForm */ "./components/ContributeForm.js");
-var _jsxFileName = "/Users/macbook/ethereum/kickstart/pages/campaigns/[campaign_id].js";
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/Layout */ "./components/Layout.js");
+/* harmony import */ var _components_ContributeForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../components/ContributeForm */ "./components/ContributeForm.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_7__);
+var _jsxFileName = "/Users/macbook/ethereum/kickstart/pages/campaigns/[campaign_id]/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -2230,7 +2233,7 @@ class CampaignShow extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64,
+        lineNumber: 65,
         columnNumber: 16
       }
     });
@@ -2241,7 +2244,7 @@ class CampaignShow extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69,
+        lineNumber: 70,
         columnNumber: 13
       }
     }, __jsx("h2", {
@@ -2249,41 +2252,86 @@ class CampaignShow extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70,
+        lineNumber: 71,
         columnNumber: 17
       }
     }, "Campaign details"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"], {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71,
+        lineNumber: 72,
         columnNumber: 17
+      }
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Row, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 73,
+        columnNumber: 21
       }
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Column, {
       width: 10,
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72,
-        columnNumber: 21
+        lineNumber: 74,
+        columnNumber: 25
       }
     }, this.renderCards()), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Column, {
       width: 6,
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 75,
-        columnNumber: 21
+        lineNumber: 77,
+        columnNumber: 25
       }
     }, __jsx(_components_ContributeForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
       address: this.props.address,
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 76,
+        lineNumber: 78,
+        columnNumber: 29
+      }
+    }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Row, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 83,
+        columnNumber: 21
+      }
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Grid"].Column, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 84,
         columnNumber: 25
       }
-    }))));
+    }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_7___default.a, {
+      href: "/campaigns/[campaign_id]/requests",
+      as: `/campaigns/${this.props.address}/requests`,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 85,
+        columnNumber: 29
+      }
+    }, __jsx("a", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 89,
+        columnNumber: 33
+      }
+    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+      primary: true,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 90,
+        columnNumber: 37
+      }
+    }, "View Requests")))))));
   }
 
 }
@@ -2294,13 +2342,13 @@ class CampaignShow extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 /***/ }),
 
 /***/ 4:
-/*!************************************************!*\
-  !*** multi ./pages/campaigns/[campaign_id].js ***!
-  \************************************************/
+/*!******************************************************!*\
+  !*** multi ./pages/campaigns/[campaign_id]/index.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/macbook/ethereum/kickstart/pages/campaigns/[campaign_id].js */"./pages/campaigns/[campaign_id].js");
+module.exports = __webpack_require__(/*! /Users/macbook/ethereum/kickstart/pages/campaigns/[campaign_id]/index.js */"./pages/campaigns/[campaign_id]/index.js");
 
 
 /***/ }),
