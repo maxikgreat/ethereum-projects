@@ -154,6 +154,69 @@ var Layout = function Layout(props) {
 
 /***/ }),
 
+/***/ "./components/RequestRow.js":
+/*!**********************************!*\
+  !*** ./components/RequestRow.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RequestRow; });
+/* harmony import */ var _babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+var _jsxFileName = "/Users/macbook/ethereum/kickstart/components/RequestRow.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+
+
+var RequestRow = /*#__PURE__*/function (_Component) {
+  Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(RequestRow, _Component);
+
+  var _super = _createSuper(RequestRow);
+
+  function RequestRow() {
+    Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, RequestRow);
+
+    return _super.apply(this, arguments);
+  }
+
+  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(RequestRow, [{
+    key: "render",
+    value: function render() {
+      return __jsx("h2", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 6,
+          columnNumber: 13
+        }
+      }, "Request");
+    }
+  }]);
+
+  return RequestRow;
+}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js":
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
@@ -53883,6 +53946,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../components/Layout */ "./components/Layout.js");
+/* harmony import */ var _components_RequestRow__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../components/RequestRow */ "./components/RequestRow.js");
 
 
 
@@ -53894,6 +53958,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -53912,20 +53977,43 @@ var RequestIndex = /*#__PURE__*/function (_Component) {
   }
 
   Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(RequestIndex, [{
+    key: "renderRows",
+    value: function renderRows() {
+      var _this = this;
+
+      return this.props.requests.map(function (request, index) {
+        return __jsx(_components_RequestRow__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          key: index,
+          request: request,
+          address: _this.props.campaign_id,
+          __self: _this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 30,
+            columnNumber: 20
+          }
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var Header = semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Table"].Header,
+          Row = semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Table"].Row,
+          HeaderCell = semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Table"].HeaderCell,
+          Body = semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Table"].Body;
       return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_8__["Layout"], {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 14,
+          lineNumber: 42,
           columnNumber: 13
         }
       }, __jsx("h3", {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 15,
+          lineNumber: 43,
           columnNumber: 17
         }
       }, "Requests"), __jsx(next_link__WEBPACK_IMPORTED_MODULE_7___default.a, {
@@ -53934,14 +54022,14 @@ var RequestIndex = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16,
+          lineNumber: 44,
           columnNumber: 17
         }
       }, __jsx("a", {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 20,
+          lineNumber: 48,
           columnNumber: 21
         }
       }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Button"], {
@@ -53949,10 +54037,87 @@ var RequestIndex = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 21,
+          lineNumber: 49,
           columnNumber: 25
         }
-      }, "New Request"))));
+      }, "New Request"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Table"], {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52,
+          columnNumber: 17
+        }
+      }, __jsx(Header, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 53,
+          columnNumber: 21
+        }
+      }, __jsx(Row, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 54,
+          columnNumber: 25
+        }
+      }, __jsx(HeaderCell, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 55,
+          columnNumber: 29
+        }
+      }, "ID"), __jsx(HeaderCell, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 56,
+          columnNumber: 29
+        }
+      }, "Description"), __jsx(HeaderCell, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57,
+          columnNumber: 29
+        }
+      }, "Amount"), __jsx(HeaderCell, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 58,
+          columnNumber: 29
+        }
+      }, "Recipient "), __jsx(HeaderCell, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 59,
+          columnNumber: 29
+        }
+      }, "Approval Count"), __jsx(HeaderCell, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 60,
+          columnNumber: 29
+        }
+      }, "Approve"), __jsx(HeaderCell, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 61,
+          columnNumber: 29
+        }
+      }, "Finalize"))), __jsx(Body, {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 64,
+          columnNumber: 21
+        }
+      }, this.renderRows())));
     }
   }]);
 
@@ -53964,7 +54129,7 @@ var __N_SSP = true;
 
 /***/ }),
 
-/***/ 12:
+/***/ 2:
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcampaigns%2F%5Bcampaign_id%5D%2Frequests&absolutePagePath=%2FUsers%2Fmacbook%2Fethereum%2Fkickstart%2Fpages%2Fcampaigns%2F%5Bcampaign_id%5D%2Frequests%2Findex.js&hotRouterUpdates=true ***!
   \**************************************************************************************************************************************************************************************************************************************/
@@ -53987,5 +54152,5 @@ module.exports = dll_c2e10d183b950a67d9e7;
 
 /***/ })
 
-},[[12,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=requests.js.map

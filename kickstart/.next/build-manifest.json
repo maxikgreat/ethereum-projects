@@ -22,15 +22,7 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/campaigns/[campaign_id]": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/campaigns/[campaign_id]/requests": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/campaigns/[campaign_id]/requests/new": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
