@@ -11,15 +11,19 @@ export async function getServerSideProps(content) {
     const requestCount = await campaign.methods.getRequestsCount().call();
 
     const requests = await Promise.all(
-        Array(requestCount)
+        Array(parseInt(requestCount))
         .fill().map((element, index) => {
             return campaign.methods.requests(index).call()
         })
     );
 
+    const approversCounts = await campaign.methods.approversCounts().call();
+
     return {props: {
         campaign_id,
-        requests: JSON.parse(JSON.stringify(requests))
+        requestCount,
+        requests: JSON.parse(JSON.stringify(requests)),
+        approversCounts
     }}
 }
 
@@ -29,8 +33,10 @@ export default class RequestIndex extends Component {
         return this.props.requests.map((request, index) => {
             return <RequestRow 
                 key={index}
+                id={index}
                 request={request}
                 address={this.props.campaign_id}
+                approversCounts={this.props.approversCounts}
             />;
         })
     }
@@ -65,6 +71,7 @@ export default class RequestIndex extends Component {
                         {this.renderRows()}
                     </Body>
                 </Table>
+                <div>Found {this.props.requestCount} request</div>
             </Layout>
         )
     }

@@ -279,19 +279,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RequestRow; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ethereum_web3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ethereum/web3 */ "./ethereum/web3.js");
+/* harmony import */ var _ethereum_campaign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ethereum/campaign */ "./ethereum/campaign.js");
 var _jsxFileName = "/Users/macbook/ethereum/kickstart/components/RequestRow.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
 class RequestRow extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(...args) {
+    super(...args);
+
+    _defineProperty(this, "onApprove", async () => {
+      const campaign = Object(_ethereum_campaign__WEBPACK_IMPORTED_MODULE_3__["campaignCreate"])(this.props.address);
+      const accounts = await _ethereum_web3__WEBPACK_IMPORTED_MODULE_2__["default"].eth.getAccounts();
+      await campaign.methods.approveRequest(this.props.id).send({
+        from: accounts[0]
+      });
+    });
+
+    _defineProperty(this, "onFinalize", async () => {
+      const campaign = Object(_ethereum_campaign__WEBPACK_IMPORTED_MODULE_3__["campaignCreate"])(this.props.address);
+      const accounts = await _ethereum_web3__WEBPACK_IMPORTED_MODULE_2__["default"].eth.getAccounts();
+      await campaign.methods.finalizeRequest(this.props.id).send({
+        from: accounts[0]
+      });
+    });
+  }
+
   render() {
-    return __jsx("h2", {
+    const {
+      Row,
+      Cell
+    } = semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"];
+    const {
+      id,
+      request,
+      approversCounts
+    } = this.props;
+    const readyToFinalize = request.approvalCount > approversCounts / 2;
+    return __jsx(Row, {
+      disabled: request.complete,
+      positive: readyToFinalize && !request.complete,
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 6,
+        lineNumber: 32,
         columnNumber: 13
       }
-    }, "Request");
+    }, __jsx(Cell, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36,
+        columnNumber: 17
+      }
+    }, id + 1), __jsx(Cell, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 37,
+        columnNumber: 17
+      }
+    }, request.description), __jsx(Cell, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 38,
+        columnNumber: 17
+      }
+    }, _ethereum_web3__WEBPACK_IMPORTED_MODULE_2__["default"].utils.fromWei(request.value, 'ether')), __jsx(Cell, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 39,
+        columnNumber: 17
+      }
+    }, request.recipient), __jsx(Cell, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 40,
+        columnNumber: 17
+      }
+    }, request.approvalCount, "/", approversCounts), __jsx(Cell, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 41,
+        columnNumber: 17
+      }
+    }, request.complete ? null : __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      basic: true,
+      color: "green",
+      onClick: this.onApprove,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 46,
+        columnNumber: 25
+      }
+    }, "Approve")), __jsx(Cell, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 53,
+        columnNumber: 17
+      }
+    }, request.complete ? null : __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      basic: true,
+      color: "teal",
+      onClick: this.onFinalize,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58,
+        columnNumber: 25
+      }
+    }, "Finalize")));
   }
 
 }
@@ -2078,13 +2189,16 @@ async function getServerSideProps(content) {
   } = content.query;
   const campaign = Object(_ethereum_campaign__WEBPACK_IMPORTED_MODULE_5__["campaignCreate"])(campaign_id);
   const requestCount = await campaign.methods.getRequestsCount().call();
-  const requests = await Promise.all(Array(requestCount).fill().map((element, index) => {
+  const requests = await Promise.all(Array(parseInt(requestCount)).fill().map((element, index) => {
     return campaign.methods.requests(index).call();
   }));
+  const approversCounts = await campaign.methods.approversCounts().call();
   return {
     props: {
       campaign_id,
-      requests: JSON.parse(JSON.stringify(requests))
+      requestCount,
+      requests: JSON.parse(JSON.stringify(requests)),
+      approversCounts
     }
   };
 }
@@ -2093,12 +2207,14 @@ class RequestIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return this.props.requests.map((request, index) => {
       return __jsx(_components_RequestRow__WEBPACK_IMPORTED_MODULE_4__["default"], {
         key: index,
+        id: index,
         request: request,
         address: this.props.campaign_id,
+        approversCounts: this.props.approversCounts,
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30,
+          lineNumber: 34,
           columnNumber: 20
         }
       });
@@ -2116,14 +2232,14 @@ class RequestIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 42,
+        lineNumber: 48,
         columnNumber: 13
       }
     }, __jsx("h3", {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 43,
+        lineNumber: 49,
         columnNumber: 17
       }
     }, "Requests"), __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -2132,14 +2248,14 @@ class RequestIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 44,
+        lineNumber: 50,
         columnNumber: 17
       }
     }, __jsx("a", {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48,
+        lineNumber: 54,
         columnNumber: 21
       }
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -2147,87 +2263,94 @@ class RequestIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49,
+        lineNumber: 55,
         columnNumber: 25
       }
     }, "New Request"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"], {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52,
+        lineNumber: 58,
         columnNumber: 17
       }
     }, __jsx(Header, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 53,
+        lineNumber: 59,
         columnNumber: 21
       }
     }, __jsx(Row, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54,
+        lineNumber: 60,
         columnNumber: 25
       }
     }, __jsx(HeaderCell, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 55,
+        lineNumber: 61,
         columnNumber: 29
       }
     }, "ID"), __jsx(HeaderCell, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56,
+        lineNumber: 62,
         columnNumber: 29
       }
     }, "Description"), __jsx(HeaderCell, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 57,
+        lineNumber: 63,
         columnNumber: 29
       }
     }, "Amount"), __jsx(HeaderCell, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 58,
+        lineNumber: 64,
         columnNumber: 29
       }
     }, "Recipient "), __jsx(HeaderCell, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 59,
+        lineNumber: 65,
         columnNumber: 29
       }
     }, "Approval Count"), __jsx(HeaderCell, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60,
+        lineNumber: 66,
         columnNumber: 29
       }
     }, "Approve"), __jsx(HeaderCell, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 61,
+        lineNumber: 67,
         columnNumber: 29
       }
     }, "Finalize"))), __jsx(Body, {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64,
+        lineNumber: 70,
         columnNumber: 21
       }
-    }, this.renderRows())));
+    }, this.renderRows())), __jsx("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 74,
+        columnNumber: 17
+      }
+    }, "Found ", this.props.requestCount, " request"));
   }
 
 }

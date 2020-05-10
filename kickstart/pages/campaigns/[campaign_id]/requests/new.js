@@ -40,7 +40,7 @@ export default class RequestNew extends Component {
                 recipient
             ).send({from: accoutns[0]});
 
-            Router.push(`/campaigns/${this.props.address}/requests`);
+            Router.back();
         } catch(e) {
             this.setState({
                 errorMessage: e.message

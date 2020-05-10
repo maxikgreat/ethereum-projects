@@ -1,9 +1,68 @@
 import React, { Component } from 'react';
+import {Table, Button} from 'semantic-ui-react';
+import web3 from '../ethereum/web3';
+import {campaignCreate} from '../ethereum/campaign';
 
 export default class RequestRow extends Component {
+
+    onApprove = async () => {
+        const campaign = campaignCreate(this.props.address);
+
+        const accounts = await web3.eth.getAccounts();
+        await campaign.methods.approveRequest(this.props.id).send({
+            from: accounts[0]
+        })
+    };
+
+    onFinalize = async () => {
+        const campaign = campaignCreate(this.props.address);
+        
+        const accounts = await web3.eth.getAccounts();
+        await campaign.methods.finalizeRequest(this.props.id).send({
+            from: accounts[0]
+        })
+    };
+
     render(){
+        const {Row, Cell} = Table;
+        const {id, request, approversCounts} = this.props;
+        const readyToFinalize = request.approvalCount > approversCounts / 2;
+
         return(
-            <h2>Request</h2>
+            <Row 
+                disabled={request.complete} 
+                positive={readyToFinalize && !request.complete}
+            >
+                <Cell>{id + 1}</Cell>
+                <Cell>{request.description}</Cell>
+                <Cell>{web3.utils.fromWei(request.value, 'ether')}</Cell>
+                <Cell>{request.recipient}</Cell>
+                <Cell>{request.approvalCount}/{approversCounts}</Cell>
+                <Cell>
+                    {
+                        request.complete
+                        ? null
+                        :
+                        <Button
+                            basic   
+                            color="green" 
+                            onClick={this.onApprove}
+                        >Approve</Button>
+                    }
+                </Cell>
+                <Cell>
+                    {
+                        request.complete
+                        ? null
+                        :
+                        <Button
+                            basic
+                            color="teal"
+                            onClick={this.onFinalize}
+                        >Finalize</Button>
+                    }
+                </Cell>
+            </Row>
         )
     }
 }
